@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Build output
+dist/
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Testing
+test-results/
+junit.xml
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
