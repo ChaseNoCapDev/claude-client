@@ -1,35 +1,39 @@
 # Dependencies
 node_modules/
-npm-debug.log*
 
-# Build output
+# Build outputs
 dist/
+build/
+*.tsbuildinfo
+
+# Coverage
 coverage/
+.nyc_output/
 
 # Logs
-logs/
 *.log
+npm-debug.log*
 
 # Environment files
 .env
 .env.local
-.env.production
+.env.*.local
 
-# Editor files
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# OS files
 .DS_Store
-Thumbs.db
 
-# Testing
+# Test artifacts
 test-results/
-junit.xml
+*.tgz
 
-# Temporary files
-*.tmp
-*.temp
-.cache/
+# Package locks
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# NPM config
+.npmrc
