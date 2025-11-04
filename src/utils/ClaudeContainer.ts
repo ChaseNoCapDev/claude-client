@@ -2,15 +2,15 @@ import { Container } from 'inversify';
 import type { ILogger } from '@chasenocap/logger';
 import { createLogger } from '@chasenocap/logger';
 
-import { IClaudeClient } from '../interfaces/IClaudeClient.js';
-import { IClaudeProcessManager } from '../interfaces/IClaudeProcessManager.js';
+import type { IClaudeClient } from '../interfaces/IClaudeClient.js';
+import type { IClaudeProcessManager } from '../interfaces/IClaudeProcessManager.js';
 import { ClaudeClient } from '../implementations/ClaudeClient.js';
 import { ClaudeProcessManager } from '../implementations/ClaudeProcessManager.js';
-import { 
-  CLAUDE_TYPES, 
-  ClaudeClientConfig, 
-  DEFAULT_CLAUDE_CONFIG 
+import {
+  CLAUDE_TYPES,
+  DEFAULT_CLAUDE_CONFIG
 } from './ClaudeTokens.js';
+import type { ClaudeClientConfig } from './ClaudeTokens.js';
 
 /**
  * Create a pre-configured container for Claude client dependencies

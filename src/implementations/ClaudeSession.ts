@@ -2,9 +2,9 @@ import { injectable, inject } from 'inversify';
 import { IResult, success, failure } from '@chasenocap/di-framework';
 import type { ILogger } from '@chasenocap/logger';
 
-import { IClaudeSession } from '../interfaces/IClaudeSession.js';
-import { IClaudeProcessManager } from '../interfaces/IClaudeProcessManager.js';
-import {
+import type { IClaudeSession } from '../interfaces/IClaudeSession.js';
+import type { IClaudeProcessManager } from '../interfaces/IClaudeProcessManager.js';
+import type {
   ClaudeCommand,
   ClaudeResponse,
   ClaudeExecutionOptions,
@@ -65,11 +65,14 @@ export class ClaudeSession implements IClaudeSession {
     this.updateActivity();
 
     // Merge session config with command
+    const cwd = command.cwd ?? this.config.workingDirectory;
+    const timeout = options?.timeout ?? command.timeout ?? this.config.timeout;
+
     const mergedCommand: ClaudeCommand = {
       ...command,
-      cwd: command.cwd || this.config.workingDirectory,
+      ...(cwd && { cwd }),
       env: { ...this.config.environment, ...command.env },
-      timeout: options?.timeout || command.timeout || this.config.timeout,
+      ...(timeout && { timeout }),
     };
 
     this.sessionLogger.info('Executing command in session', {
@@ -115,11 +118,14 @@ export class ClaudeSession implements IClaudeSession {
     this.updateActivity();
 
     // Merge session config with command
+    const cwd = command.cwd ?? this.config.workingDirectory;
+    const timeout = options?.timeout ?? command.timeout ?? this.config.timeout;
+
     const mergedCommand: ClaudeCommand = {
       ...command,
-      cwd: command.cwd || this.config.workingDirectory,
+      ...(cwd && { cwd }),
       env: { ...this.config.environment, ...command.env },
-      timeout: options?.timeout || command.timeout || this.config.timeout,
+      ...(timeout && { timeout }),
     };
 
     this.sessionLogger.info('Executing streaming command in session', {
@@ -203,7 +209,7 @@ export class ClaudeSession implements IClaudeSession {
       executionCount: this._executionCount,
       totalDuration: this._totalDuration,
       averageDuration: this._executionCount > 0 ? this._totalDuration / this._executionCount : 0,
-      lastExecutionTime: this._lastExecutionTime,
+      ...(this._lastExecutionTime && { lastExecutionTime: this._lastExecutionTime }),
     };
   }
 

@@ -2,16 +2,17 @@ import { injectable, inject } from 'inversify';
 import { IResult, success, failure } from '@chasenocap/di-framework';
 import type { ILogger } from '@chasenocap/logger';
 
-import { IClaudeClient } from '../interfaces/IClaudeClient.js';
-import { IClaudeProcessManager } from '../interfaces/IClaudeProcessManager.js';
+import type { IClaudeClient } from '../interfaces/IClaudeClient.js';
+import type { IClaudeProcessManager } from '../interfaces/IClaudeProcessManager.js';
 import { ClaudeSession } from './ClaudeSession.js';
-import {
+import type {
   ClaudeCommand,
   ClaudeResponse,
   ClaudeExecutionOptions,
   ClaudeSessionConfig,
 } from '../types/ClaudeTypes.js';
-import { CLAUDE_TYPES, ClaudeClientConfig } from '../utils/ClaudeTokens.js';
+import { CLAUDE_TYPES } from '../utils/ClaudeTokens.js';
+import type { ClaudeClientConfig } from '../utils/ClaudeTokens.js';
 
 @injectable()
 export class ClaudeClient implements IClaudeClient {

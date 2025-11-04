@@ -109,12 +109,12 @@ export class ClaudeProcessManager implements IClaudeProcessManager {
 
       const duration = Date.now() - startTime;
       const output = chunks.join('');
-      const error = errorChunks.join('');
+      const errorOutput = errorChunks.join('');
 
       const response: ClaudeResponse = {
         id: responseId,
         output,
-        error: error || undefined,
+        ...(errorOutput && { error: errorOutput }),
         exitCode,
         duration,
         timestamp: new Date(),
@@ -125,7 +125,7 @@ export class ClaudeProcessManager implements IClaudeProcessManager {
         exitCode,
         duration,
         outputLength: output.length,
-        hasError: !!error
+        hasError: !!errorOutput
       });
 
       return success(response);
@@ -196,12 +196,12 @@ export class ClaudeProcessManager implements IClaudeProcessManager {
 
       const duration = Date.now() - startTime;
       const output = allChunks.join('');
-      const error = errorChunks.join('');
+      const errorOutput = errorChunks.join('');
 
       const response: ClaudeResponse = {
         id: responseId,
         output,
-        error: error || undefined,
+        ...(errorOutput && { error: errorOutput }),
         exitCode,
         duration,
         timestamp: new Date(),

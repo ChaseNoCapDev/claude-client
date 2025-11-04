@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 
 // Core interfaces
-export { IClaudeClient } from './interfaces/IClaudeClient.js';
-export { IClaudeSession } from './interfaces/IClaudeSession.js';
-export { IClaudeProcessManager } from './interfaces/IClaudeProcessManager.js';
+export type { IClaudeClient } from './interfaces/IClaudeClient.js';
+export type { IClaudeSession } from './interfaces/IClaudeSession.js';
+export type { IClaudeProcessManager } from './interfaces/IClaudeProcessManager.js';
 
 // Implementations
 export { ClaudeClient } from './implementations/ClaudeClient.js';
@@ -11,7 +11,7 @@ export { ClaudeSession } from './implementations/ClaudeSession.js';
 export { ClaudeProcessManager } from './implementations/ClaudeProcessManager.js';
 
 // Types
-export {
+export type {
   ClaudeCommand,
   ClaudeResponse,
   ClaudeStreamChunk,
@@ -24,9 +24,9 @@ export {
 // Dependency injection tokens and configuration
 export {
   CLAUDE_TYPES,
-  ClaudeClientConfig,
   DEFAULT_CLAUDE_CONFIG,
 } from './utils/ClaudeTokens.js';
+export type { ClaudeClientConfig } from './utils/ClaudeTokens.js';
 
 // Utilities
 export { createClaudeContainer } from './utils/ClaudeContainer.js';
